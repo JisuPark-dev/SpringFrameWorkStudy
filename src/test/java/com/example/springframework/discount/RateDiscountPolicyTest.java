@@ -1,16 +1,19 @@
 package com.example.springframework.discount;
 
+import com.example.springframework.config.AppConfig;
 import com.example.springframework.member.Grade;
 import com.example.springframework.member.Member;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import static com.example.springframework.member.Grade.BASIC;
 import static com.example.springframework.member.Grade.VIP;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RateDiscountPolicyTest {
-    RateDiscountPolicy discountPolicy = new RateDiscountPolicy();
+    private RateDiscountPolicy discountPolicy = new RateDiscountPolicy();
     @Test
     @DisplayName("VIP는 10%할인이 적용된다.")
     void vip_o(){

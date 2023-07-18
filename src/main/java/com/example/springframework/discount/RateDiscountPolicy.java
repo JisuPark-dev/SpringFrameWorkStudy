@@ -1,6 +1,5 @@
 package com.example.springframework.discount;
 
-import com.example.springframework.member.Grade;
 import com.example.springframework.member.Member;
 
 import static com.example.springframework.member.Grade.VIP;
