@@ -34,7 +34,5 @@ class OrderServiceImplTest {
         //then
         assertThat(order.calculatePrice()).isEqualTo(18000);
         assertThat(order.getDiscountPrice()).isEqualTo(2000);
-        
     }
-
 }
