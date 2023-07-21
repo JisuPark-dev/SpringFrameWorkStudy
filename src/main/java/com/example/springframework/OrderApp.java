@@ -12,7 +12,7 @@ import static com.example.springframework.member.Grade.VIP;
 
 public class OrderApp {
     public static void main(String[] args) {
-        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AutoAppConfig.class);
         OrderService orderService = applicationContext.getBean("orderService", OrderService.class);
         MemberService memberService = applicationContext.getBean("memberService", MemberService.class);
 
