@@ -17,7 +17,7 @@ public class BeanLifeCycleTest {
     }
     @Configuration
     static class LifeCycleConfig {
-        @Bean
+        @Bean(initMethod = "init")
         public NetworkClient networkClient() {
             NetworkClient networkClient = new NetworkClient();
             System.out.println("생성완료");
