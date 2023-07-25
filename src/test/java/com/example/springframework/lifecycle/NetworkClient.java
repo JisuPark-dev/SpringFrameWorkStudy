@@ -1,7 +1,7 @@
 package com.example.springframework.lifecycle;
 
-import org.springframework.beans.factory.DisposableBean;
-import org.springframework.beans.factory.InitializingBean;
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 public class NetworkClient {
 
@@ -29,13 +29,14 @@ public class NetworkClient {
     }
 
     //의존관계 주입이 끝나면! 호출해줄게!
+    @PostConstruct
     public void init() {
         System.out.println("NetworkClient.init");
         connect();
         call("초기화 연결 메세지");
     }
 
-
+    @PreDestroy
     public void close() {
         System.out.println("NetworkClient.close");
         disconnect();
