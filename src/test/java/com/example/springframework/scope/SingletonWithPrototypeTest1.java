@@ -1,6 +1,7 @@
 package com.example.springframework.scope;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -8,6 +9,7 @@ import org.springframework.context.annotation.Scope;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.inject.Provider;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -31,13 +33,13 @@ public class SingletonWithPrototypeTest1 {
     void singletonClientUsePrototype() {
         AnnotationConfigApplicationContext ac =
                 new AnnotationConfigApplicationContext(
-                        ClientBean2.class, PrototypeBean.class
+                        ClientBean4.class, PrototypeBean.class
                 );
 
-        ClientBean2 clientBean1 = ac.getBean(ClientBean2.class);
+        ClientBean4 clientBean1 = ac.getBean(ClientBean4.class);
         int count1 = clientBean1.logic();
         assertThat(count1).isEqualTo(1);
-        ClientBean2 clientBean2 = ac.getBean(ClientBean2.class);
+        ClientBean4 clientBean2 = ac.getBean(ClientBean4.class);
         int count2 = clientBean2.logic();
         assertThat(count2).isEqualTo(1);
     }
@@ -63,6 +65,33 @@ public class SingletonWithPrototypeTest1 {
 
         public int logic() {
             PrototypeBean prototypeBean = applicationContext.getBean(PrototypeBean.class);
+            prototypeBean.addCount();
+            int count = prototypeBean.getCount();
+            return count;
+        }
+    }
+
+    //ObjectProvider
+    @Scope("singleton")
+    static class ClientBean3 {
+        @Autowired
+        private ObjectProvider<PrototypeBean> prototypeBeanProvider;
+
+        public int logic() {
+            PrototypeBean prototypeBean = prototypeBeanProvider.getObject();
+            prototypeBean.addCount();
+            int count = prototypeBean.getCount();
+            return count;
+        }
+    }
+    //javax.inject.provider
+    @Scope("singleton")
+    static class ClientBean4 {
+        @Autowired
+        private Provider<PrototypeBean> prototypeBeanProvider;
+
+        public int logic() {
+            PrototypeBean prototypeBean = prototypeBeanProvider.get();
             prototypeBean.addCount();
             int count = prototypeBean.getCount();
             return count;
