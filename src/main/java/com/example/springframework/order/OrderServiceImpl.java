@@ -1,12 +1,9 @@
 package com.example.springframework.order;
 
-import com.example.springframework.aanotation.MainDiscountPolicy;
+import com.example.springframework.annotation.MainDiscountPolicy;
 import com.example.springframework.discount.DiscountPolicy;
 import com.example.springframework.member.Member;
 import com.example.springframework.member.MemberRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -1,4 +1,4 @@
-package com.example.springframework.aanotation;
+package com.example.springframework.annotation;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 
