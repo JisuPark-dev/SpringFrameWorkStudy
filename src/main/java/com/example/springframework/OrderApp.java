@@ -1,6 +1,5 @@
 package com.example.springframework;
 
-import com.example.springframework.config.AppConfig;
 import com.example.springframework.member.Member;
 import com.example.springframework.member.MemberService;
 import com.example.springframework.order.Order;
